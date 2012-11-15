@@ -4,7 +4,7 @@ class AppHistory
     @length = 0
 
   removeDuplicates: (item) =>
-    @items  = @items.filter (existing) -> existing isnt   item
+    @items  = @items.filter (existing) -> existing isnt item
     @length = @items.length
 
   add: (item) ->
