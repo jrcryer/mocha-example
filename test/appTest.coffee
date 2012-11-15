@@ -54,3 +54,12 @@ describe 'Application History', ->
     history.add ''
     
     history.length.should.equal 0
+
+  it 'should remove older items from queue if capacity given', ->
+    history = new AppHistory(2)
+    history.add 'test 1'
+    history.add 'test 2'
+    history.add 'test 3'
+
+    history.length.should.equal 2
+

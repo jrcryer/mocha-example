@@ -5,13 +5,20 @@ class AppHistory
 
   removeDuplicates: (item) =>
     @items  = @items.filter (existing) -> existing isnt item
+
+  removeItemsOutOfBounds: =>
+    return if @capacity is 0
+    @items = @items[0..(@capacity - 1)]
+
+  setLength: =>
     @length = @items.length
 
   add: (item) ->
     return false if item is ''
     this.removeDuplicates(item)
-    @items  = [item].concat @items
-    @length = @items.length
+    @items = [item].concat @items
+    this.removeItemsOutOfBounds()
+    this.setLength()
 
   get: (index) ->
     @items[index]
@@ -21,7 +28,7 @@ class AppHistory
 
   last: ->
     this.get(@length - 1)
-
+     
 
 root = exports ? window
 root.AppHistory = AppHistory
